@@ -6,6 +6,9 @@ import javax.persistence.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -27,6 +30,7 @@ public class Language implements Serializable {
 
 	@Column(name="last_update", nullable=false)
 	@Generated(value = GenerationTime.ALWAYS)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Timestamp lastUpdate;
 
 	@Column(nullable=false, length=20)
@@ -34,10 +38,12 @@ public class Language implements Serializable {
 
 	//bi-directional many-to-one association to Film
 	@OneToMany(mappedBy="language")
+	@JsonIgnore
 	private List<Film> films;
 
 	//bi-directional many-to-one association to Film
 	@OneToMany(mappedBy="languageVO")
+	@JsonIgnore
 	private List<Film> filmsVO;
 
 	public Language() {

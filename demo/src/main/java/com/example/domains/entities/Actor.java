@@ -2,9 +2,17 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.validator.constraints.Length;
+
+import com.example.core.validators.NIF;
+import com.example.domains.entities.core.EntityBase;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -18,7 +26,7 @@ import java.util.Objects;
 @Entity
 @Table(name="actor")
 @NamedQuery(name="Actor.findAll", query="SELECT a FROM Actor a")
-public class Actor implements Serializable {
+public class Actor extends EntityBase<Actor> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,17 +35,25 @@ public class Actor implements Serializable {
 	private int actorId;
 
 	@Column(name="first_name", nullable=false, length=45)
+	@NotBlank
+	@Length(min = 2, max = 45)
+//	@NIF
 	private String firstName;
 
+	@NotBlank
+	@Length(min = 2, max = 45)
+	@Pattern(regexp = "[A-Z]+", message = "Debe ir en mayúsculas.")
 	@Column(name="last_name", nullable=false, length=45)
 	private String lastName;
 
 	@Column(name="last_update", nullable=false)
 	@Generated(value = GenerationTime.ALWAYS)
+	@PastOrPresent
 	private Timestamp lastUpdate;
 
 	//bi-directional many-to-one association to FilmActor
 	@OneToMany(mappedBy="actor")
+	@Valid
 	private List<FilmActor> filmActors;
 
 	public Actor() {
