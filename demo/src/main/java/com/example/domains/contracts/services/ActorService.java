@@ -1,4 +1,4 @@
-package com.example.domais.contracts.services;
+package com.example.domains.contracts.services;
 
 import com.example.domains.entities.Actor;
 

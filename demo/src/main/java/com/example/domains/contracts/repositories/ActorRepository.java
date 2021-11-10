@@ -1,4 +1,4 @@
-package com.example.domais.contracts.repositories;
+package com.example.domains.contracts.repositories;
 
 import java.util.List;
 
