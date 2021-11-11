@@ -1,5 +1,7 @@
 package com.example.domains.entities.dtos;
 
+import org.hibernate.validator.constraints.Length;
+
 import com.example.domains.entities.Actor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class ActorDTO {
 	@JsonProperty("id")
 	private int actorId;
+	@Length(min = 2, max = 45)
 	@JsonProperty("nombre")
 	private String firstName;
 	@JsonProperty("apellidos")

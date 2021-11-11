@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.domains.contracts.repositories.ActorRepository;
@@ -21,6 +24,31 @@ public class ActorServiceImpl implements ActorService {
 	@Override
 	public List<Actor> getAll() {
 		return dao.findAll();
+	}
+
+	@Override
+	public Iterable<Actor> getAll(Sort sort) {
+		return dao.findAll(sort);
+	}
+
+	@Override
+	public Page<Actor> getAll(Pageable pageable) {
+		return dao.findAll(pageable);
+	}
+
+	@Override
+	public <T> List<T> getByProjection(Class<T> type) {
+		return dao.findByActorIdIsNotNull(type);
+	}
+
+	@Override
+	public <T> Iterable<T> getByProjection(Sort sort, Class<T> type) {
+		return dao.findByActorIdIsNotNull(sort, type);
+	}
+
+	@Override
+	public <T> Page<T> getByProjection(Pageable pageable, Class<T> type) {
+		return dao.findByActorIdIsNotNull(pageable, type);
 	}
 
 	@Override
