@@ -59,19 +59,19 @@ public class CatalogoResource {
 
 		private CatalogoLinks _links = new CatalogoLinks();
 	}
+
+	@GetMapping(path = "/")
+	public ResponseEntity<CatalogoResources> getResources() {
+		return ResponseEntity.ok().header("Content-Type", "application/hal+json").body(new CatalogoResources());
+	}
 	
-	@Data @AllArgsConstructor @NoArgsConstructor
+	@Value
 	public static class NovedadesDTO {
 		private List<Film> films;
 		private List<Actor> actors;
 		private List<Category> categories;
 		@JsonView(Language.Complete.class)
 		private List<Language> idiomas;
-	}
-
-	@GetMapping(path = "/")
-	public ResponseEntity<CatalogoResources> getResources() {
-		return ResponseEntity.ok().header("Content-Type", "application/hal+json").body(new CatalogoResources());
 	}
 	
 	@GetMapping(path = "/novedades")

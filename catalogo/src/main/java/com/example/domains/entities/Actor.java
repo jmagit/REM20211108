@@ -12,6 +12,7 @@ import org.hibernate.annotations.GenerationTime;
 import org.hibernate.validator.constraints.Length;
 
 import com.example.domains.entities.core.EntityBase;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class Actor extends EntityBase<Actor> implements Serializable {
 	//bi-directional many-to-one association to FilmActor
 	@OneToMany(mappedBy="actor")
 	@Valid
+	@JsonIgnore
 	private List<FilmActor> filmActors = new ArrayList<FilmActor>();
 
 	public Actor() {
