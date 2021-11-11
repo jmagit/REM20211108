@@ -1,4 +1,4 @@
-package com.example.infraestructure.repositories;
+package com.example.domains.contracts.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

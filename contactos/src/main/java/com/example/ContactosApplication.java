@@ -16,8 +16,8 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import com.example.domains.contracts.repositories.ContactoRepository;
 import com.example.domains.entities.Contacto;
-import com.example.infraestructure.repositories.ContactoRepository;
 
 import springfox.documentation.oas.annotations.EnableOpenApi;
 

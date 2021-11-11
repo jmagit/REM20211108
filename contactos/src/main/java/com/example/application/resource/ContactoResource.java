@@ -28,11 +28,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.example.domains.contracts.repositories.ContactoRepository;
 import com.example.domains.entities.Contacto;
 import com.example.exceptions.BadRequestException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
-import com.example.infraestructure.repositories.ContactoRepository;
 
 import lombok.Value;
 
