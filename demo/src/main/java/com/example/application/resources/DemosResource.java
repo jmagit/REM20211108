@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -88,6 +90,19 @@ public class DemosResource {
 	public String pideVinculos() {
 		return proxy.getVinculos();
 //		return srvRestLB.getForObject( "lb://catalogo-service/", String.class, 1);
+	}
+
+	@Value("${particular.para.demos:Valor por defecto}")
+	String particular;
+	
+	@Value("${comun.para.todos}")
+	String comun;
+	
+	
+	@RefreshScope
+	@GetMapping("/config")
+	public String config() {
+		return "comun: " + comun + "\n particular: " + particular;
 	}
 
 }
